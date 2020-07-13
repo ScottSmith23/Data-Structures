@@ -56,23 +56,54 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #             return self.storage.remove_head()
 
 
-from singly_linked_list import LinkedList
-from stack import Stack
+# QUEUE USING STACKS
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.storage = []
+
+    def __len__(self):
+        return self.size
+
+    def push(self, value):
+        self.size += 1
+        return self.storage.append(value)
+        
+
+    def pop(self):
+        if self.size == 0:
+            pass
+        else:
+            self.size -= 1
+            return self.storage.pop(-1)
+
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.stack1 = Stack()
+        self.stack2 = Stack()
     
     def __len__(self):
         return self.size
 
     def enqueue(self, value):
         self.size += 1
-        return self.storage.add_to_tail(value)
+        while len(self.stack1) != 0:  
+            self.stack2.push(self.stack1.pop())  
+            
+  
+        # Push item into self.s1  
+        self.stack1.push(value)  
+  
+        # Push everything back to s1  
+        while len(self.stack2) != 0:  
+            self.stack1.push(self.stack2.pop())  
+             
+    
 
     def dequeue(self):
         if self.size == 0:
             pass
         else:
             self.size -= 1
-            return self.storage.remove_head()
+            return self.stack1.pop()
