@@ -121,9 +121,9 @@ class DoublyLinkedList:
         if self.head is None:
             return None
         maxVal = self.head.value
-        current = self.head
-        while current:
-            if current.value > maxVal:
-                maxVal = current.value
-            current = current.next
+        curVal = self.head
+        while curVal:
+            if curVal.value > maxVal:
+                maxVal = curVal.value
+            curVal = curVal.next
         return maxVal
